@@ -8,12 +8,12 @@ const ProductRoute =express.Router();
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, './tmp/')
+      cb(null, './public/products/')
     },
     filename: function (req, file, cb) {
       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-      cb(null, file.fieldname + '-' + uniqueSuffix + file.originalname)
-      req.body.prdimg= file.fieldname + '-' + uniqueSuffix + file.originalname;
+      cb(null, uniqueSuffix + file.originalname)
+      req.body.prdimg= uniqueSuffix + file.originalname;
     }
   })
   

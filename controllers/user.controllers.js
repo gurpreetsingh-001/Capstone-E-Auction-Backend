@@ -56,7 +56,7 @@ const LoginUser = async (req, res) => {
     if (ismatchedPassword) {
         const token = jwt.sign({
             data: ifUser._id
-        }, process.env.JWT_SECRETKEY, { expiresIn: '1h' });
+        }, process.env.JWT_SECRETKEY, { expiresIn: '100h' });
         return res.status(200).json({
             message: `User is loggedin`,
             token

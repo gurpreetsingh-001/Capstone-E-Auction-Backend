@@ -18,6 +18,7 @@ async function isLogged(req,res,next){
         req.userId =decoded.data;
         return res.status(200).json({
             message:"User is verified"
+            
         })
         
     } catch (error) {

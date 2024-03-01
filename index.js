@@ -33,12 +33,9 @@ app.use('/user',UserRoute);
 app.use('/dashboard',DashboardRoute)
 app.use('/product',ProductRoute)
 app.use('/isloggedin',Logged)
-// app.use(express.static(path.join(__dirname, 'tmp')));
-// app.get('/imageserve', (req, res) => {
-//     const filename = req.query.filename;
-//     const imageurl = path.join(__dirname, 'tmp', filename); // Assuming your images are stored in the 'public' directory
-//     res.json({ imageUrl: imageurl });
-// });
+
+app.use(express.static('public'))
+
 
 //app.use('/category',CategoryRoute)
 app.use('*',(req,res,next)=>{

@@ -43,7 +43,10 @@ const ProductView = async (req, res) => {
 }
 const ProductViewAll = async (req, res) => {
     try {
-        const ProdDet  = (await ProductModel.find().select('category productname minbid startdate enddate prdimg')).reverse();
+        const currentDate = new Date();
+const yesterdayDate = new Date(currentDate);
+yesterdayDate.setDate(currentDate.getDate() - 1);
+        const ProdDet  = (await ProductModel.find({enddate:{$gte:yesterdayDate}}).select('category productname minbid startdate enddate prdimg')).reverse();
         console.log(ProdDet+ "prodetails")
         return res.status(200).json({
             message: "Product Found",
