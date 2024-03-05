@@ -3,7 +3,7 @@ const AuctionSchemaDetails = require('../controllers/auction.controller')
 const jwtHandler = require('../utils/jwtHandler');
 const auctionRoute =express.Router();
 
-auctionRoute.post('/',jwtHandler, AuctionSchemaDetails);
+auctionRoute.post('/:prdtid',jwtHandler, AuctionSchemaDetails);
 
 
 

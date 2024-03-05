@@ -7,11 +7,21 @@ const AuctionSchemaDetails = new Schema({
          ref:'eAuctionProducts',
          required:true
     },
-    bids:{
-        type:Array,
-        required:true
-
-    }
+    bids: [
+        {
+            userId:
+            {
+                type:mongoose.Schema.Types.ObjectId,
+                ref:'eAuctionUsers',
+                required:true
+            }
+        ,
+          bidAmount: {
+            type: Number,
+            required: true
+          }
+        }
+      ]
     
       
 
