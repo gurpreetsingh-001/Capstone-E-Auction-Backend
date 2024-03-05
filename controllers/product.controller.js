@@ -61,4 +61,24 @@ yesterdayDate.setDate(currentDate.getDate() - 1);
 }
 
 
-module.exports = {ProductAdd,ProductView,ProductViewAll}
+const ProductViewById = async (req, res) => {
+    try {
+        const productId = req.params.id;
+        
+        const ResProductviewbyID  = (await ProductModel.find({_id:productId}).select('category productname minbid startdate enddate prdimg')).reverse();
+        //console.log(ResProductviewbyID+ "prodetails")
+        return res.status(200).json({
+            message: "Product Found",
+            ResProductviewbyID
+        })
+    } catch (error) {
+        console.log(error.message ,"error msg");
+        res.status(404).json({
+            message: error.message
+        })
+    }
+}
+
+
+
+module.exports = {ProductAdd,ProductView,ProductViewAll,ProductViewById}

@@ -1,6 +1,6 @@
 const express =require('express');
 const multer=require('multer');
-const {ProductAdd,ProductView,ProductViewAll} = require('../controllers/product.controller')
+const {ProductAdd,ProductView,ProductViewAll,ProductViewById} = require('../controllers/product.controller')
 const jwtHandler = require('../utils/jwtHandler');
 
 // creating cusotm route;
@@ -20,8 +20,10 @@ const storage = multer.diskStorage({
   const upload = multer({ storage: storage })
 
 ProductRoute.post('/addproduct',upload.single("prdimg"),jwtHandler,ProductAdd);
-ProductRoute.get('/viewproduct',jwtHandler,ProductView);
-ProductRoute.get('/viewallproducts',ProductViewAll);
+ProductRoute.get('/viewproduct',jwtHandler,ProductView);  // this is used for logged in user who have added their own products
+ProductRoute.get('/viewallproducts',ProductViewAll); // this is public & displaying to all users in home page
+ProductRoute.get('/viewproductbyid/:id',jwtHandler,ProductViewById);
+
 
 
 
