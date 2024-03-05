@@ -33,6 +33,7 @@ app.use('/user',UserRoute);
 app.use('/dashboard',DashboardRoute)
 app.use('/product',ProductRoute)
 app.use('/isloggedin',Logged)
+app.use('/auction',auctionRoute)
 
 app.use(express.static('public'))
 
@@ -43,6 +44,7 @@ app.use('*',(req,res,next)=>{
  next(error);
 })
 const errorHandler= require('./utils/errorHandler');
+const auctionRoute = require('./routes/auction.routes');
 
 
 app.use(errorHandler);
