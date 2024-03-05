@@ -36,4 +36,7 @@ catch (error) {
 }
      
 }
+
+
+
 module.exports =AuctionDetails
