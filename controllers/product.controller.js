@@ -41,7 +41,7 @@ const ProductView = async (req, res) => {
         })
     }
 }
-const ProductViewAll = async (req, res) => {
+const ProductViewAll = async (req, res) => { 
     try {
         const currentDate = new Date();
 const yesterdayDate = new Date(currentDate);

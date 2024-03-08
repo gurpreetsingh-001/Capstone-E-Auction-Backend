@@ -102,10 +102,37 @@ const UpdateProfile = async(req,res)=>{
    
 
 
+const UpdateProfilePic = async(req,res)=>{
+    try {
+        const{profilepic } = req.file;
+  //      console.log(username,email,mobile,req.userId)
+
+        const user  = await UserModel.findOneAndUpdate(
+            { _id:req.userId },
+            { profilepic:profilepic },
+            { new: true, upsert: true }
+        )
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+          }
+      
+          return res
+      .status(200)
+      .json({ message: "Profile Pic updated successfully", user });
+
+    } catch (error) {
+        console.log(error.message ,"error msg");
+        res.status(404).json({
+            message: error.message
+        })
+    }
+}
 
 
 module.exports = {
     LoginUser,
     RegisterUser,
-    UpdateProfile
+    UpdateProfile,
+    UpdateProfilePic
 };

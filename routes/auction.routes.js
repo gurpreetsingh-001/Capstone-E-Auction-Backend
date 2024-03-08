@@ -6,7 +6,7 @@ const jwtHandler = require('../utils/jwtHandler');
 const auctionRoute =express.Router();
 
 auctionRoute.post('/:prdtid',jwtHandler,AuctionDetails );
-auctionRoute.get('/details/:prdtid',jwtHandler, AuctionProductDetails);
+auctionRoute.get('/details/:id',jwtHandler, AuctionProductDetails);
 
 
 

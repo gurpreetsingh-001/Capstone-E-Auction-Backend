@@ -39,6 +39,11 @@ const UserdetailSchema = new Schema({
         }
 
     },
+    profilepic:
+    {
+        type:String,
+        default:"user.png"
+    }
     // custom schema ;
 
 },{
