@@ -93,14 +93,15 @@ const AuctionProductDetails = async (req, res) => {
       //  console.log("ABCD");
         const prdtid = req.params.id;
         // console.log(prdtid);
-        const auctionDetails = await AuctionModel.find({ productid: prdtid }).populate({
+        let auctionDetails=[]
+            auctionDetails = await AuctionModel.find({ productid: prdtid }).populate({
             path: 'bids.userId', // Populate the userId field in the bids array
             model: 'eAuctionUsers'
         });
        
         let count=0;
         let highest = 0;
-        if (auctionDetails || auctionDetails.length >0 )
+        if (auctionDetails && auctionDetails.length >0 )
         {
              count= auctionDetails[0].bids.length
              highest = auctionDetails[0].bids[0].bidAmount;
