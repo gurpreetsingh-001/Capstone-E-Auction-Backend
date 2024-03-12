@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors =require('cors')
+const morgan = require('morgan')
 const path = require('path'); 
 require('dotenv').config();
 const UserRoute =require('./routes/user.routes');
@@ -51,6 +52,12 @@ io.on("connection", (socket) => {
 const Port = 5000;
 
 app.use(express.json());
+
+morgan.token("body", (req) => {
+    return JSON.stringify(req.body);
+  });
+  
+  app.use(morgan(":method :url :body"));
 //app.use(cors())
 const connectDb = async () => {
     try {
