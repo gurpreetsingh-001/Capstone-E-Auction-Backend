@@ -87,6 +87,11 @@ const UpdateProfile = async(req,res)=>{
           if (mobile) {
             user.mobile = mobile;
           }
+          if (password){
+            const hashedPassword = await bcryptPassword(password);
+            user.password= hashedPassword;
+
+          }
           await user.save();
           return res
       .status(200)
