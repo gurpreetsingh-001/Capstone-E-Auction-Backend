@@ -70,7 +70,7 @@ const LoginUser = async (req, res) => {
 
 const UpdateProfile = async(req,res)=>{
     try {
-        const{username, email, mobile } = req.body;
+        const{username, email, mobile,password } = req.body;
         console.log(username,email,mobile,req.userId)
 
         const user  = await UserModel.findOne({_id:req.userId})
