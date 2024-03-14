@@ -29,6 +29,11 @@ const AuctionSchemaDetails = new Schema({
   auctionOwner:{
     type: mongoose.Schema.Types.ObjectId,
        
+  },
+  payment:
+  {
+    type:Boolean,
+    default:false
   }
   
 

@@ -11,7 +11,7 @@ const DashboardDetails = async (req, res) => {
 
     const UserAuctionDetails = await AuctionModel.find({
       "bids.userId": req.userId,
-    });
+    }).populate('productid')
 
     let CompletedAuction = [];
 
@@ -28,12 +28,14 @@ const DashboardDetails = async (req, res) => {
 
     
     let WonAuctions = [];
+    
     CompletedAuction.map((auction) => {
       let highestbid = auction.bids[0];
       
       auction.bids.forEach((bid) => {
         if (bid.amount > highestbid.amount) {
           highestbid = bid;
+          
         }
       });
      console.log(highestbid.userId,req.userId);
@@ -41,13 +43,19 @@ const DashboardDetails = async (req, res) => {
         WonAuctions.push(auction);
       }
     });
+
+    UserAuctionDetails.forEach((userauction)=>{
+      const status = WonAuctions.some((wonAuction) => wonAuction._id.equals(userauction._id));
+      userauction.status = status;
+    })
     
 
     let ActiveBids = UserAuctionDetails.length;
     let Wonbids = WonAuctions.length;
 
     //Error Handling: user found or not found
-    return res.status(200).json({ user, ActiveBids,Wonbids,UserAuctionDetails,WonAuctions});
+    return res.status(200).json({ user, ActiveBids,Wonbids,  UserAuctionDetails: UserAuctionDetails.map(auction => ({ ...auction.toObject(), status: auction.status })),
+    WonAuctions});
   } catch (error) {
     // Handle errors appropriately, e.g., log the error or send an error response
     console.error(error);

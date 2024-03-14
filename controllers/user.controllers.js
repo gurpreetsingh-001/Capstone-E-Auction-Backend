@@ -109,13 +109,12 @@ const UpdateProfile = async(req,res)=>{
 
 const UpdateProfilePic = async(req,res)=>{
     try {
-        const{profilepic } = req.file;
+        const{profilepic } = req.body;
   //      console.log(username,email,mobile,req.userId)
-
+console.log(profilepic);
         const user  = await UserModel.findOneAndUpdate(
             { _id:req.userId },
-            { profilepic:profilepic },
-            { new: true, upsert: true }
+            { profilepic:profilepic }
         )
 
         if (!user) {

@@ -13,7 +13,8 @@ const errorHandler= require('./utils/errorHandler');
 const auctionRoute = require('./routes/auction.routes');
 const app = require('express')();
 
-const socketIO = require('socket.io')
+const socketIO = require('socket.io');
+const paymentroute = require('./routes/payment.route');
 const server = require('http').createServer(app);
 
 
@@ -78,6 +79,7 @@ app.use('/user',UserRoute);
 app.use('/dashboard',DashboardRoute)
 app.use('/product',ProductRoute)
 app.use('/isloggedin',Logged)
+app.use('/api',paymentroute)
 
 
 app.use(express.static('public'))
