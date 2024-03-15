@@ -41,7 +41,7 @@ const AuctionDetails = async (req, res) => {
             { new: true, upsert: true }
         );
     return res.status(201).json({
-        message: "data inserted successfully",
+        message: "Bid Inserted Successfully",
         auctionData
     })
     }
