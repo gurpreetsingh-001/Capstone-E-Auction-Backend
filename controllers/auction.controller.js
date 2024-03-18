@@ -55,38 +55,7 @@ catch (error) {
      
 }
  
-// const AuctionProductDetails = async (req, res) => {
-//     try {
-//         const prdtid = req.params.id;
 
-//         const auctionDetails = await AuctionModel.find({ productid: prdtid }).populate({
-//             path: 'bids.userId', // Populate the userId field in the bids array
-//             model: 'eAuctionUsers'
-//         });
-
-//         if (!auctionDetails) {
-//             return res.status(404).json({
-//                 message: 'Auction not found'
-//             });
-//         }
-
-//         const usersDetails = auctionDetails[0].bids.map(bid => ({
-//             userId: bid.userId._id,
-//             userName: bid.userId.username, // Adjust the field based on your user schema
-//             bidAmount: bid.bidAmount
-//         }));
-
-//         return res.status(200).json({
-//             message: 'Auction Users Details Found',
-//             usersDetails
-//         });
-//     } catch (error) {
-//         console.log(error.message, 'error msg');
-//         res.status(500).json({
-//             message: 'Internal Server Error'
-//         });
-//     }
-// };
 const AuctionProductDetails = async (req, res) => {
     try {
 

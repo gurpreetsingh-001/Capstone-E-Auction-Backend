@@ -6,7 +6,7 @@ const DashboardDetails = async (req, res) => {
   try {
     const user = await UserModel.findOne(
       { _id: req.userId },
-      "username email mobile profilepic"
+      "username email mobile profilepic _id"
     );
 
     const UserAuctionDetails = await AuctionModel.find({
@@ -14,7 +14,7 @@ const DashboardDetails = async (req, res) => {
     }).populate('productid')
 
     let CompletedAuction = [];
-
+console.log(UserAuctionDetails);
     // Use Promise.all to await all promises in the map function
     await Promise.all(
       UserAuctionDetails.map(async (auction) => {
@@ -45,6 +45,9 @@ const DashboardDetails = async (req, res) => {
     });
 
     UserAuctionDetails.forEach((userauction)=>{
+
+
+
       const status = WonAuctions.some((wonAuction) => wonAuction._id.equals(userauction._id));
       userauction.status = status;
     })
