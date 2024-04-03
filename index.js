@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors =require('cors')
 const morgan = require('morgan')
 const path = require('path'); 
+const addproducts = require('./seeder/seedsProduct')
 require('dotenv').config();
 const UserRoute =require('./routes/user.routes');
 const DashboardRoute = require('./routes/dashboard');
@@ -92,7 +93,7 @@ app.use('*',(req,res,next)=>{
  next(error);
 })
 
-
+//addproducts();
 app.use(errorHandler);
 
 // API endpoint to update your comment using userID for the same product;***************
